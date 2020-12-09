@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRb;
     private Animator playerAnim;
+    private GameManager gameManager;
 
     public float jumpForce;
     public float speed;
@@ -16,9 +17,10 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
             gameOver = true;
             playerAnim.SetBool("Death_b", true);
             playerAnim.SetInteger("DeathType_int", 1);
+            gameManager.GameOver();
         }
     }
 }
